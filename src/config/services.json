@@ -1,0 +1,26 @@
+{
+  "pageLanguageRate": 30,
+  "services": [
+    {
+      "id": "seo",
+      "name": "SEO",
+      "description": "Full responsive web programming",
+      "price": 300,
+      "hasExtras": false
+    },
+    {
+      "id": "ads",
+      "name": "Ads",
+      "description": "Full responsive web programming",
+      "price": 400,
+      "hasExtras": false
+    },
+    {
+      "id": "web",
+      "name": "Web",
+      "description": "Full responsive web programming",
+      "price": 500,
+      "hasExtras": true
+    }
+  ]
+}
