@@ -22,7 +22,7 @@ function BudgetDetail({ budgetId, budgets }: BudgetDetailProps) {
   }
 
   function handleGoHome(): void {
-    window.location.hash = ''
+      window.location.assign('#')
   }
 
   if (!budget) {

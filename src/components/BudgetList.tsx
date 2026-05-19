@@ -57,8 +57,8 @@ function BudgetList({ budgets, onDelete }: BudgetListProps) {
   }
 
   function handleView(id: string): void {
-    window.location.hash = `/budget/${id}`
-  }
+  window.location.assign(`#/budget/${id}`)
+}
 
   function handleDelete(id: string): void {
     if (window.confirm('Delete this budget?')) {
