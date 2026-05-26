@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { ClientData, FormErrors } from '../types'
+import type { ClientData, FormErrors } from '../../types'
 
 interface ClientFormProps {
   onSubmit: (client: ClientData) => void
