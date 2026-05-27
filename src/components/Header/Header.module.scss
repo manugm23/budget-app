@@ -1,0 +1,24 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.header {
+  padding: v.$space-4 v.$space-6;
+  border-bottom: 1px solid v.$color-border-light;
+  background: v.$color-bg-card;
+  @include m.flex-gap(v.$space-3);
+
+  @include m.mobile {
+    padding: v.$space-3 v.$space-4;
+  }
+}
+
+.logo {
+  flex-shrink: 0;
+  color: v.$color-primary;
+}
+
+.appName {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-primary;
+}
