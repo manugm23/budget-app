@@ -1,3 +1,5 @@
+import styles from './ConfirmModal.module.scss'
+
 interface ConfirmModalProps {
   message: string
   onConfirm: () => void
@@ -10,81 +12,29 @@ function ConfirmModal({ message, onConfirm, onCancel }: ConfirmModalProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        background: 'rgba(0,0,0,0.4)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 10000,
-        padding: 20,
-      }}
+      className={styles.overlay}
     >
-      <div
-        style={{
-          background: '#fff',
-          borderRadius: 16,
-          padding: '32px 28px',
-          maxWidth: 400,
-          width: '100%',
-          textAlign: 'center',
-        }}
-      >
-        {/* Icon */}
-        <div style={{ fontSize: 40, marginBottom: 12 }}>🗑️</div>
+      <div className={styles.modal}>
+        <div className={styles.icon} aria-hidden="true">🗑️</div>
 
-        {/* Title */}
-        <h2
-          id="modal-title"
-          style={{
-            fontSize: 18,
-            fontWeight: 700,
-            color: '#111',
-            margin: '0 0 8px',
-          }}
-        >
+        <h2 id="modal-title" className={styles.title}>
           Delete budget
         </h2>
 
-        {/* Message */}
-        <p style={{ fontSize: 15, color: '#6b7280', margin: '0 0 24px' }}>
-          {message}
-        </p>
+        <p className={styles.message}>{message}</p>
 
-        {/* Buttons */}
-        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+        <div className={styles.actions}>
           <button
             type="button"
             onClick={onCancel}
-            style={{
-              flex: 1,
-              padding: '11px 0',
-              border: '1px solid #e5e7eb',
-              borderRadius: 10,
-              fontSize: 15,
-              fontWeight: 600,
-              cursor: 'pointer',
-              background: '#fff',
-              color: '#374151',
-            }}
+            className={styles.buttonCancel}
           >
             Cancel
           </button>
           <button
             type="button"
             onClick={onConfirm}
-            style={{
-              flex: 1,
-              padding: '11px 0',
-              border: 'none',
-              borderRadius: 10,
-              fontSize: 15,
-              fontWeight: 600,
-              cursor: 'pointer',
-              background: '#dc2626',
-              color: '#fff',
-            }}
+            className={styles.buttonConfirm}
           >
             Delete
           </button>
