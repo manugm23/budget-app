@@ -1,4 +1,5 @@
-import type { WebConfig } from '../types'
+import type { WebConfig } from '../../types'
+import styles from './WebConfigurator.module.scss'
 
 interface WebConfiguratorProps {
   config: WebConfig
@@ -12,7 +13,11 @@ function WebConfigurator({ config, onChange }: WebConfiguratorProps) {
     onChange({ ...config, [field]: next })
   }
 
-  const fields: { field: keyof WebConfig; label: string; tooltip: string }[] = [
+  const fields: {
+    field: keyof WebConfig
+    label: string
+    tooltip: string
+  }[] = [
     {
       field: 'pages',
       label: 'Number of pages',
@@ -26,63 +31,28 @@ function WebConfigurator({ config, onChange }: WebConfiguratorProps) {
   ]
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+    <div className={styles.configurator}>
       {fields.map(({ field, label, tooltip }) => (
-        <div
-          key={field}
-          style={{ display: 'flex', alignItems: 'center', gap: 12 }}
-        >
+        <div key={field} className={styles.row}>
+
           <button
             type="button"
             aria-label={`Info about ${label}`}
             title={tooltip}
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'help',
-              padding: 0,
-              color: '#9ca3af',
-              fontSize: 16,
-              lineHeight: 1,
-            }}
+            className={styles.infoButton}
           >
             ⓘ
           </button>
 
-          <span
-            style={{ flex: 1, fontSize: 14, color: '#374151' }}
-          >
-            {label}
-          </span>
+          <span className={styles.fieldLabel}>{label}</span>
 
-          <div
-            role="group"
-            aria-label={label}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              border: '1px solid #e5e7eb',
-              borderRadius: 10,
-              overflow: 'hidden',
-            }}
-          >
+          <div role="group" aria-label={label} className={styles.spinner}>
             <button
               type="button"
               aria-label={`Decrease ${label}`}
               onClick={() => handleSpin(field, -1)}
               disabled={config[field] <= 1}
-              style={{
-                width: 34,
-                height: 34,
-                border: 'none',
-                background: '#f9fafb',
-                fontSize: 18,
-                color: config[field] <= 1 ? '#d1d5db' : '#374151',
-                cursor: config[field] <= 1 ? 'not-allowed' : 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              className={styles.spinnerButton}
             >
               −
             </button>
@@ -90,13 +60,7 @@ function WebConfigurator({ config, onChange }: WebConfiguratorProps) {
             <span
               aria-live="polite"
               aria-atomic="true"
-              style={{
-                width: 40,
-                textAlign: 'center',
-                fontSize: 15,
-                fontWeight: 600,
-                color: '#111',
-              }}
+              className={styles.spinnerValue}
             >
               {config[field]}
             </span>
@@ -105,18 +69,7 @@ function WebConfigurator({ config, onChange }: WebConfiguratorProps) {
               type="button"
               aria-label={`Increase ${label}`}
               onClick={() => handleSpin(field, 1)}
-              style={{
-                width: 34,
-                height: 34,
-                border: 'none',
-                background: '#f9fafb',
-                fontSize: 18,
-                color: '#374151',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              className={styles.spinnerButton}
             >
               +
             </button>
@@ -124,7 +77,7 @@ function WebConfigurator({ config, onChange }: WebConfiguratorProps) {
         </div>
       ))}
 
-      <p style={{ fontSize: 12, color: '#6b7280', margin: 0 }}>
+      <p className={styles.hint}>
         Each page or language adds 30€ to the base price.
       </p>
     </div>
