@@ -1,0 +1,78 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.hero {
+  background: v.$color-bg-hero;
+  border-radius: v.$radius-xl;
+  padding: v.$space-12 v.$space-8;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: v.$space-8;
+
+  @include m.mobile {
+    padding: v.$space-8 v.$space-5;
+    margin-bottom: v.$space-6;
+  }
+}
+
+.shapes {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.shape {
+  position: absolute;
+
+  &--orange {
+    top: 10px;
+    right: 40px;
+    opacity: 0.7;
+
+    @include m.mobile {
+      right: 10px;
+    }
+  }
+
+  &--yellow {
+    bottom: 10px;
+    left: 20px;
+    opacity: 0.6;
+  }
+
+  &--teal {
+    bottom: 20px;
+    right: 100px;
+    opacity: 0.5;
+
+    @include m.mobile {
+      right: 40px;
+    }
+  }
+
+  &--bolt {
+    top: 20px;
+    left: 60px;
+    opacity: 0.4;
+
+    @include m.mobile {
+      left: 20px;
+    }
+  }
+}
+
+.title {
+  font-size: clamp(22px, 5vw, #{v.$font-size-3xl});
+  font-weight: v.$font-weight-heavy;
+  color: v.$color-text-primary;
+  margin: 0;
+  position: relative;
+}
+
+.subtitle {
+  color: v.$color-text-muted;
+  font-size: v.$font-size-base;
+  margin-top: v.$space-2;
+  position: relative;
+}
