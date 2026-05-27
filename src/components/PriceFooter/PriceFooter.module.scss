@@ -1,0 +1,33 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.footer {
+  @include m.flex-between;
+  gap: v.$space-4;
+  padding: v.$space-5 0;
+  border-top: 1px solid v.$color-border-light;
+  margin-top: v.$space-2;
+
+  @include m.mobile {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: v.$space-1;
+  }
+}
+
+.label {
+  font-size: 18px;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-secondary;
+}
+
+.amount {
+  font-size: v.$font-size-2xl;
+  font-weight: v.$font-weight-heavy;
+  color: v.$color-text-primary;
+}
+
+.currency {
+  font-size: 18px;
+  font-weight: v.$font-weight-medium;
+}
