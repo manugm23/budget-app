@@ -1,0 +1,98 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  @include m.flex-center;
+  z-index: 10000;
+  padding: v.$space-5;
+  animation: fadeIn 0.15s ease;
+}
+
+.modal {
+  background: v.$color-bg-card;
+  border-radius: v.$radius-xl;
+  padding: v.$space-8 v.$space-6;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: v.$shadow-modal;
+  animation: slideUp 0.2s ease;
+
+  @include m.mobile {
+    padding: v.$space-6 v.$space-5;
+  }
+}
+
+.icon {
+  font-size: 40px;
+  margin-bottom: v.$space-3;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-primary;
+  margin: 0 0 v.$space-2;
+}
+
+.message {
+  font-size: v.$font-size-base;
+  color: v.$color-text-muted;
+  margin: 0 0 v.$space-6;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  gap: v.$space-3;
+  justify-content: center;
+}
+
+.button {
+  @include m.button-base;
+  @include m.focus-ring;
+  flex: 1;
+  padding: 11px 0;
+  font-size: v.$font-size-base;
+}
+
+.buttonCancel {
+  composes: button;
+  background: v.$color-bg-card;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-secondary;
+
+  &:hover {
+    background: v.$color-bg-subtle;
+  }
+}
+
+.buttonConfirm {
+  composes: button;
+  background: v.$color-danger;
+  border: none;
+  color: #fff;
+
+  &:hover {
+    background: darken(#dc2626, 8%);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

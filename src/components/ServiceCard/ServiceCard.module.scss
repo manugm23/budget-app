@@ -1,0 +1,91 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.card {
+  @include m.card-base;
+  cursor: pointer;
+  transition: v.$transition-base;
+
+  &--selected {
+    border-color: v.$color-primary;
+    border-width: 1.5px;
+    background: v.$color-primary-light;
+  }
+
+  &:hover:not(.card--selected) {
+    border-color: darken(#e5e7eb, 8%);
+    box-shadow: v.$shadow-card;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-weight: v.$font-weight-black;
+  font-size: 18px;
+  color: v.$color-text-primary;
+}
+
+.description {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+  margin-top: v.$space-1;
+}
+
+.price {
+  font-weight: v.$font-weight-heavy;
+  font-size: 22px;
+  color: v.$color-text-primary;
+  min-width: 80px;
+  text-align: right;
+}
+
+.currency {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-medium;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  cursor: pointer;
+  input[type='checkbox'] {
+    display: none;
+  }
+}
+
+.checkboxBox {
+  width: 22px;
+  height: 22px;
+  border-radius: v.$radius-sm;
+  border: 1.5px solid v.$color-border;
+  background: v.$color-bg-card;
+  @include m.flex-center;
+  transition: v.$transition-fast;
+  flex-shrink: 0;
+
+  &--checked {
+    background: v.$color-primary;
+    border-color: v.$color-primary;
+  }
+}
+
+.checkboxText {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-secondary;
+}
+
+.extras {
+  margin-top: v.$space-5;
+  border-top: 1px solid v.$color-primary-border;
+  padding-top: v.$space-4;
+}

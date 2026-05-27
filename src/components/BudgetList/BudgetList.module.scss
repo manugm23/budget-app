@@ -1,0 +1,247 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.section {
+  margin-top: v.$space-12;
+}
+
+.heading {
+  font-size: v.$font-size-lg;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-primary;
+  margin-bottom: v.$space-5;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: v.$space-5;
+  align-items: center;
+}
+
+.searchWrapper {
+  position: relative;
+  flex: 1 1 160px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: v.$color-text-faint;
+  font-size: v.$font-size-base;
+  pointer-events: none;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 9px 14px 9px 36px;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  font-size: 14px;
+  outline: none;
+  background: v.$color-bg-card;
+  color: v.$color-text-primary;
+  transition: v.$transition-fast;
+  box-sizing: border-box;
+
+  &:focus {
+    border-color: v.$color-primary;
+    box-shadow: 0 0 0 3px rgba(45, 184, 135, 0.15);
+  }
+}
+
+.sortButton {
+  @include m.button-base;
+  @include m.focus-ring;
+  background: transparent;
+  border: 1px solid v.$color-border;
+  padding: 8px 14px;
+  font-size: v.$font-size-sm;
+  color: v.$color-text-secondary;
+
+  &:hover {
+    background: v.$color-bg-subtle;
+  }
+
+  &--active {
+    background: v.$color-primary-light;
+    border-color: v.$color-primary-border;
+    color: v.$color-primary;
+    font-weight: v.$font-weight-black;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: v.$space-10 0;
+  color: v.$color-text-faint;
+  font-size: v.$font-size-base;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-3;
+}
+
+.card {
+  @include m.card-base;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: v.$space-4;
+  align-items: center;
+  transition: v.$transition-base;
+
+  &:hover {
+    box-shadow: v.$shadow-card;
+  }
+
+  @include m.tablet {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      'client   services'
+      'total    actions';
+  }
+
+  @include m.mobile {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'client'
+      'services'
+      'total'
+      'actions';
+  }
+}
+
+.clientInfo {
+  @include m.tablet { grid-area: client; }
+}
+
+.clientName {
+  font-weight: v.$font-weight-black;
+  font-size: v.$font-size-md;
+  color: v.$color-text-primary;
+}
+
+.clientContact {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+  margin-top: 2px;
+}
+
+.services {
+  @include m.tablet { grid-area: services; }
+}
+
+.servicesLabel {
+  @include m.label-uppercase;
+  color: v.$color-text-secondary;
+  margin-bottom: v.$space-2;
+}
+
+.servicesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.serviceItem {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-secondary;
+  line-height: 1.6;
+}
+
+.serviceExtras {
+  color: v.$color-text-muted;
+}
+
+.total {
+  text-align: right;
+
+  @include m.tablet { grid-area: total; }
+  @include m.mobile { text-align: left; }
+}
+
+.totalLabel {
+  @include m.label-uppercase;
+  color: v.$color-text-faint;
+}
+
+.totalAmount {
+  font-size: v.$font-size-xl;
+  font-weight: v.$font-weight-heavy;
+  color: v.$color-text-primary;
+  line-height: 1.2;
+}
+
+.totalCurrency {
+  font-size: v.$font-size-base;
+}
+
+.totalMeta {
+  font-size: v.$font-size-xs;
+  color: v.$color-text-faint;
+  margin-top: 2px;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+
+  @include m.tablet { grid-area: actions; }
+  @include m.mobile {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.actionButton {
+  @include m.button-base;
+  @include m.focus-ring;
+  padding: 6px 14px;
+  font-size: v.$font-size-sm;
+
+  &--view {
+    background: v.$color-primary-light;
+    border: 1px solid v.$color-primary-border;
+    color: v.$color-primary-dark;
+    font-weight: v.$font-weight-black;
+
+    &:hover {
+      background: darken(#f0fdf9, 4%);
+    }
+  }
+
+  &--copy {
+    background: v.$color-bg-card;
+    border: 1px solid v.$color-border;
+    color: v.$color-text-secondary;
+
+    &:hover {
+      background: v.$color-bg-subtle;
+    }
+
+    &--copied {
+      background: v.$color-primary-light;
+      border-color: v.$color-primary-border;
+      color: v.$color-primary;
+    }
+  }
+
+  &--delete {
+    background: v.$color-bg-card;
+    border: 1px solid v.$color-danger-border;
+    color: v.$color-danger;
+
+    &:hover {
+      background: v.$color-danger-light;
+    }
+  }
+}
