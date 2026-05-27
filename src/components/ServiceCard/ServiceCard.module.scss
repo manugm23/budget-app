@@ -1,109 +1,91 @@
-import type { Service, WebConfig } from '../../types'
-import WebConfigurator from '../WebConfigurator/WebConfigurator'
-import styles from './ServiceCard.module.scss'
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
 
-interface ServiceCardProps {
-  service: Service
-  isSelected: boolean
-  onToggle: (id: string) => void
-  webConfig: WebConfig
-  onWebConfigChange: (config: WebConfig) => void
+.card {
+  @include m.card-base;
+  cursor: pointer;
+  transition: v.$transition-base;
+
+  &--selected {
+    border-color: v.$color-primary;
+    border-width: 1.5px;
+    background: v.$color-primary-light;
+  }
+
+  &:hover:not(.card--selected) {
+    border-color: darken(#e5e7eb, 8%);
+    box-shadow: v.$shadow-card;
+  }
 }
 
-function ServiceCard({
-  service,
-  isSelected,
-  onToggle,
-  webConfig,
-  onWebConfigChange,
-}: ServiceCardProps) {
-  const showExtras = service.hasExtras && isSelected
-
-  // Combine the base class with the --selected modifier, if applicable
-  const cardClass = [
-    styles.card,
-    isSelected ? styles['card--selected'] : '',
-  ].join(' ')
-
-  const checkboxClass = [
-    styles.checkboxBox,
-    isSelected ? styles['checkboxBox--checked'] : '',
-  ].join(' ')
-
-  return (
-    <div
-      role="group"
-      aria-labelledby={`service-name-${service.id}`}
-      className={cardClass}
-      onClick={() => onToggle(service.id)}
-    >
-      <div className={styles.header}>
-
-        <div className={styles.info}>
-          <div
-            id={`service-name-${service.id}`}
-            className={styles.name}
-          >
-            {service.name}
-          </div>
-          <div className={styles.description}>{service.description}</div>
-        </div>
-
-        <div
-          className={styles.price}
-          aria-label={`${service.price} euros`}
-        >
-          {service.price}{' '}
-          <span className={styles.currency}>€</span>
-        </div>
-
-        <label
-          className={styles.checkboxLabel}
-          aria-label={`Add ${service.name}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <input
-            type="checkbox"
-            checked={isSelected}
-            onChange={() => onToggle(service.id)}
-            aria-checked={isSelected}
-          />
-          <span className={checkboxClass} aria-hidden="true">
-            {isSelected && (
-              <svg
-                width="13"
-                height="10"
-                viewBox="0 0 13 10"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M1 5L5 9L12 1"
-                  stroke="#fff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-          </span>
-          <span className={styles.checkboxText}>Add</span>
-        </label>
-      </div>
-
-      {showExtras && (
-        <div
-          className={styles.extras}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <WebConfigurator
-            config={webConfig}
-            onChange={onWebConfigChange}
-          />
-        </div>
-      )}
-    </div>
-  )
+.header {
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
 }
 
-export default ServiceCard
+.info {
+  flex: 1;
+}
+
+.name {
+  font-weight: v.$font-weight-black;
+  font-size: 18px;
+  color: v.$color-text-primary;
+}
+
+.description {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+  margin-top: v.$space-1;
+}
+
+.price {
+  font-weight: v.$font-weight-heavy;
+  font-size: 22px;
+  color: v.$color-text-primary;
+  min-width: 80px;
+  text-align: right;
+}
+
+.currency {
+  font-size: v.$font-size-base;
+  font-weight: v.$font-weight-medium;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  cursor: pointer;
+  input[type='checkbox'] {
+    display: none;
+  }
+}
+
+.checkboxBox {
+  width: 22px;
+  height: 22px;
+  border-radius: v.$radius-sm;
+  border: 1.5px solid v.$color-border;
+  background: v.$color-bg-card;
+  @include m.flex-center;
+  transition: v.$transition-fast;
+  flex-shrink: 0;
+
+  &--checked {
+    background: v.$color-primary;
+    border-color: v.$color-primary;
+  }
+}
+
+.checkboxText {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-secondary;
+}
+
+.extras {
+  margin-top: v.$space-5;
+  border-top: 1px solid v.$color-primary-border;
+  padding-top: v.$space-4;
+}
