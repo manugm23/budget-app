@@ -1,0 +1,237 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.main {
+  max-width: v.$max-width;
+  margin: 0 auto;
+  padding: v.$space-10 v.$space-5 v.$space-12;
+
+  @include m.mobile {
+    padding: v.$space-6 v.$space-4 v.$space-10;
+  }
+}
+
+.backButton {
+  @include m.button-base;
+  @include m.focus-ring;
+  background: none;
+  border: none;
+  color: v.$color-primary;
+  font-size: 14px;
+  font-weight: v.$font-weight-bold;
+  padding: 0;
+  margin-bottom: v.$space-6;
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.card {
+  background: v.$color-bg-card;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-xl;
+  padding: v.$space-8;
+  box-shadow: v.$shadow-card;
+
+  @include m.mobile {
+    padding: v.$space-5 v.$space-4;
+  }
+}
+
+.cardHeader {
+  @include m.flex-between;
+  flex-wrap: wrap;
+  gap: v.$space-4;
+  margin-bottom: v.$space-8;
+
+  @include m.mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: v.$space-5;
+  }
+}
+
+.budgetId {
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-black;
+  color: v.$color-primary;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: v.$space-1;
+}
+
+.clientName {
+  font-size: 26px;
+  font-weight: v.$font-weight-heavy;
+  color: v.$color-text-primary;
+  margin: 0;
+}
+
+.date {
+  color: v.$color-text-muted;
+  font-size: 14px;
+  margin-top: v.$space-1;
+}
+
+.shareButton {
+  @include m.button-base;
+  @include m.focus-ring;
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: v.$font-weight-bold;
+  background: v.$color-bg-card;
+  border: 1.5px solid v.$color-border;
+  color: v.$color-text-secondary;
+  transition: v.$transition-base;
+
+  &--copied {
+    background: v.$color-primary-light;
+    border-color: v.$color-primary;
+    color: v.$color-primary;
+  }
+
+  &:hover:not(.shareButton--copied) {
+    background: v.$color-bg-subtle;
+  }
+}
+
+.section {
+  margin-bottom: v.$space-6;
+}
+
+.sectionTitle {
+  @include m.label-uppercase;
+  color: v.$color-text-secondary;
+  margin-bottom: v.$space-3;
+}
+
+.clientGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-3;
+}
+
+.clientField {
+  background: v.$color-bg-subtle;
+  border-radius: v.$radius-md;
+  padding: v.$space-3 v.$space-4;
+  flex: 1 1 180px;
+}
+
+.fieldLabel {
+  @include m.label-uppercase;
+  color: v.$color-text-faint;
+  margin-bottom: 2px;
+}
+
+.fieldValue {
+  font-size: v.$font-size-base;
+  color: v.$color-text-primary;
+}
+
+.servicesTable {
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  overflow: hidden;
+}
+
+.serviceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px v.$space-5;
+  border-bottom: 1px solid v.$color-border-light;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background: v.$color-bg-subtle;
+  }
+}
+
+.serviceName {
+  font-weight: v.$font-weight-bold;
+  font-size: v.$font-size-base;
+  color: v.$color-text-primary;
+}
+
+.serviceExtras {
+  font-size: v.$font-size-sm;
+  color: v.$color-text-muted;
+  margin-top: 2px;
+}
+
+.servicePrice {
+  font-weight: v.$font-weight-black;
+  font-size: v.$font-size-md;
+  color: v.$color-text-primary;
+}
+
+.grandTotal {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+  gap: v.$space-3;
+  padding-top: v.$space-4;
+  border-top: 2px solid v.$color-border-light;
+}
+
+.totalLabel {
+  font-size: 18px;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-secondary;
+}
+
+.totalAmount {
+  font-size: v.$font-size-3xl;
+  font-weight: v.$font-weight-heavy;
+  color: v.$color-text-primary;
+}
+
+.totalCurrency {
+  font-size: 22px;
+}
+
+.notFound {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: v.$space-10 v.$space-5;
+  text-align: center;
+}
+
+.notFoundIcon {
+  font-size: 48px;
+  margin-bottom: v.$space-3;
+}
+
+.notFoundTitle {
+  font-size: 22px;
+  font-weight: v.$font-weight-black;
+  color: v.$color-text-primary;
+  margin-bottom: v.$space-2;
+}
+
+.notFoundText {
+  color: v.$color-text-muted;
+  margin-bottom: v.$space-6;
+}
+
+.homeButton {
+  @include m.button-base;
+  @include m.focus-ring;
+  background: v.$color-primary;
+  color: #fff;
+  border: none;
+  padding: v.$space-3 v.$space-6;
+  font-size: v.$font-size-base;
+
+  &:hover {
+    background: darken(#2db887, 8%);
+  }
+}
