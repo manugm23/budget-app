@@ -9,7 +9,6 @@ A single-page application built with **React + TypeScript** that allows users to
 ## Table of contents
 
 - [Features](#features)
-- [Tech stack](#tech-stack)
 - [Project structure](#project-structure)
 - [Getting started](#getting-started)
 - [Configuration](#configuration)
@@ -54,7 +53,7 @@ A single-page application built with **React + TypeScript** that allows users to
 ## Tech stack
 
 | Category | Technology |
-|---|---|
+| Styling | SASS + CSS Modules |
 | Framework | React 18 |
 | Language | TypeScript |
 | Build tool | Vite |
@@ -111,7 +110,30 @@ budget-app/
 ├── tsconfig.app.json
 └── package.json
 ```
+## Styling architecture
 
+Each component has its own `.module.scss` file colocated in its folder. Styles are locally scoped — they never leak to other components.
+
+Global design tokens live in `src/styles/`:
+- `_variables.scss` — colors, spacing, typography, breakpoints
+- `_mixins.scss` — reusable mixins for breakpoints, flex, buttons, cards
+- `global.scss` — reset and base styles
+
+### How to use variables in a component
+
+```scss
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.myComponent {
+  color: v.$color-primary;
+  padding: v.$space-4;
+
+  @include m.mobile {
+    padding: v.$space-2;
+  }
+}
+```
 ---
 
 ## Getting started
