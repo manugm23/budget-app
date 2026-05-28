@@ -1,5 +1,6 @@
 @use '../../styles/variables' as v;
 @use '../../styles/mixins' as m;
+@use 'sass:color';
 
 .card {
   @include m.card-base;
@@ -13,8 +14,7 @@
   }
 
   &:hover:not(.card--selected) {
-    border-color: darken(#e5e7eb, 8%);
-    box-shadow: v.$shadow-card;
+  border-color: color.adjust(#e5e7eb, $lightness: -8%);    box-shadow: v.$shadow-card;
   }
 }
 

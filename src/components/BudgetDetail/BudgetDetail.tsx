@@ -104,7 +104,7 @@ function BudgetDetail({ budgetId, budgets }: BudgetDetailProps) {
         <section aria-labelledby="services-heading" className={styles.section}>
           <h2 id="services-heading" className={styles.sectionTitle}>Services</h2>
           <div className={styles.servicesTable}>
-            {budget.services.map((serviceId, index) => {
+            {budget.services.map((serviceId) => {
               const svc = servicesConfig.services.find((s) => s.id === serviceId)
               const extrasTotal =
                 svc?.hasExtras && budget.webConfig

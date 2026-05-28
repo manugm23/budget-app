@@ -1,5 +1,6 @@
 @use '../../styles/variables' as v;
 @use '../../styles/mixins' as m;
+@use 'sass:color';
 
 .form {
   @include m.card-base;
@@ -18,7 +19,7 @@
   background: v.$color-danger-light;
   border-radius: v.$radius-md;
   font-size: v.$font-size-sm;
-  color: darken(#dc2626, 15%);
+  color: color.adjust(#dc2626, $lightness: -15%);
 }
 
 .fields {
@@ -94,7 +95,7 @@
   transition: v.$transition-fast;
 
   &:hover:not(:disabled) {
-    background: darken(#2db887, 8%);
+    background: color.adjust(#2db887, $lightness: -8%);
     transform: translateY(-1px);
   }
 

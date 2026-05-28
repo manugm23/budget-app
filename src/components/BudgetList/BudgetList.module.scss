@@ -1,5 +1,6 @@
 @use '../../styles/variables' as v;
 @use '../../styles/mixins' as m;
+@use 'sass:color';
 
 .section {
   margin-top: v.$space-12;
@@ -215,7 +216,7 @@
     font-weight: v.$font-weight-black;
 
     &:hover {
-      background: darken(#f0fdf9, 4%);
+      background: color.adjust(#f0fdf9, $lightness: -4%);
     }
   }
 

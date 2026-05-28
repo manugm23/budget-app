@@ -1,5 +1,6 @@
 @use '../../styles/variables' as v;
 @use '../../styles/mixins' as m;
+@use 'sass:color';
 
 .overlay {
   position: fixed;
@@ -51,7 +52,7 @@
   justify-content: center;
 }
 
-.button {
+%buttonBase {
   @include m.button-base;
   @include m.focus-ring;
   flex: 1;
@@ -60,7 +61,7 @@
 }
 
 .buttonCancel {
-  composes: button;
+  @extend %buttonBase;
   background: v.$color-bg-card;
   border: 1px solid v.$color-border;
   color: v.$color-text-secondary;
@@ -71,13 +72,13 @@
 }
 
 .buttonConfirm {
-  composes: button;
+  @extend %buttonBase;
   background: v.$color-danger;
   border: none;
   color: #fff;
 
   &:hover {
-    background: darken(#dc2626, 8%);
+    background: color.adjust(#dc2626, $lightness: -8%);
   }
 }
 
